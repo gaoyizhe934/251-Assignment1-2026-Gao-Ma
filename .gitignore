@@ -10,3 +10,9 @@ target/
 .DS_Store
 Thumbs.db
 *.log
+
+# Local planning and submission materials (not part of the program repository)
+01_需求与规划/
+02_设计资料/
+04_测试与质量/
+05_交付材料/
