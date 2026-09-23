@@ -1,74 +1,78 @@
-# GitHub 协作与代码注释规范
+# GitHub Collaboration and Code Commenting Rules
 
-本规范用于 159.251 Assignment 1 的日常协作。所有 GitHub 记录必须反映真实工作；禁止为增加提交数量而提交空文件、无意义格式化或伪造 Issue、评审和测试结果。
+This policy applies only to this repository. GitHub evidence must reflect real work. Do not create empty commits, meaningless formatting changes, or fabricated Issues, reviews, and test results merely to increase visible activity.
 
-## 1. 提交规则
+## 1. Repository language policy
 
-1. 开始一个功能、缺陷修复或工程任务前，先在 GitHub 创建 Issue。Issue 必须写清背景、完成条件、负责人和关联模块；使用 `feature`、`bug`、`test`、`quality`、`ci` 或 `docs` 标签。
-2. 每项工作从 `main` 新建短生命周期分支。分支名使用 `类型/中文简述`，例如 `feat/实现文本搜索`、`fix/处理空文件保存`、`test/覆盖文档服务`。
-3. 一个提交只解决一个可审查的完整小任务，并在本地通过相关检查后提交。不要把功能、重构、依赖升级和无关格式化混入同一提交。
-4. 提交信息必须使用中文，且只使用以下前缀之一：
+All human-readable repository content and GitHub collaboration text must be written in English. This includes source-code comments, Javadoc, README files, documentation, configuration descriptions, Issue and pull-request titles and bodies, review comments, test names, UI messages, and workflow descriptions. Use clear New Zealand English where a regional spelling choice is needed.
 
-   - `feat:`：新增用户可见功能
-   - `fix:`：修复错误或异常处理
-   - `docs:`：README、使用说明或设计说明
-   - `test:`：新增或修改测试
-   - `refactor:`：不改变行为的代码结构调整
-   - `chore:`：构建、CI、依赖、工具或配置调整
+## 2. Commit rules
 
-   示例：`feat: 实现UTF-8文本文件保存`、`test: 覆盖搜索未命中场景`、`fix: 处理ODT读取失败`。
+1. Create a GitHub Issue before beginning a feature, defect fix, quality task, or build task. The Issue must state the context, acceptance criteria, owner, and affected module. Apply an appropriate `feature`, `bug`, `test`, `quality`, `ci`, or `docs` label.
+2. Create a short-lived branch from `main` for each task. Branch names use `type/Chinese-summary`; for example, `feat/<feature-summary>`, `fix/<bug-summary>`, or `test/<test-summary>`.
+3. Each commit must contain one small, complete, reviewable task. Do not combine features, refactoring, dependency changes, and unrelated formatting changes in one commit.
+4. Commit subjects must use a Chinese summary and one of these prefixes only:
 
-5. 提交正文（需要时）应列出：关联 Issue、实现范围、验证命令及结果。例如：
+   - `feat:` for a new user-visible feature
+   - `fix:` for a defect or error-handling fix
+   - `docs:` for README, usage, or design documentation
+   - `test:` for test additions or changes
+   - `refactor:` for behaviour-preserving restructuring
+   - `chore:` for build, CI, dependency, tool, or configuration work
+
+   Format examples: `feat: <feature-summary>`, `test: <test-summary>`, and `fix: <bug-summary>`.
+
+5. When needed, the commit body records the linked Issue, scope, validation command, and result. For example:
 
    ```text
-   feat: 实现文本搜索
+   feat: <feature-summary>
 
-   关联: #12
-   验证: mvn test -Dtest=SearchServiceTest
+   Linked issue: #12
+   Validation: mvn test -Dtest=SearchServiceTest
    ```
 
-6. 每位成员应在自己实际完成工作后尽快提交并推送，开发期间保持近乎每日都有真实的 Git 活动。提交前至少执行与改动相关的测试；涉及构建、依赖或质量插件时执行 `mvn test` 或相应 Maven goal。
+6. Each member pushes soon after completing genuine work and maintains near-daily Git activity during development. Run the relevant tests before committing; run `mvn test` or the relevant Maven goal when changing build, dependency, or quality tooling.
 
-## 2. 分支、Issue 与 Pull Request 流程
+## 3. Branch, Issue, and pull-request workflow
 
-1. `main` 只接收已验证、可构建的代码，不直接在 `main` 上开发。
-2. 分支完成后创建 Pull Request，标题使用与提交一致的中文前缀，并在描述中关联 Issue（例如 `Closes #12`）。
-3. PR 描述必须包括改动摘要、验收方法和结果；GUI 功能附截图或简短操作说明，质量/构建功能附对应报告、命令输出或 CI 链接。
-4. 由另一位成员审阅。审阅者应留下真实的批准意见或明确的修改意见；作者处理后再合并。
-5. 合并前确认：相关测试通过、CI 通过、没有未解决的 review 意见、Issue 的验收条件已满足。合并 PR 后关闭对应 Issue。
-6. 合并采用正常的 merge commit 或 squash merge，并保留 PR 与 Issue 的关联。不要重写已推送的共同分支历史。
+1. `main` contains only verified, buildable code. Do not develop directly on `main`.
+2. Create a pull request when a branch is ready. Use the same prefix style as the commits and link its Issue, for example `Closes #12`.
+3. The PR description must include a change summary, acceptance method, and result. GUI work needs a screenshot or reproducible interaction notes; build and quality work needs the relevant report, command output, or CI link.
+4. The other member reviews every PR and leaves a genuine approval or actionable change request. Address feedback before merging.
+5. Before merging, confirm that relevant tests and CI pass, no review comments remain unresolved, and the Issue acceptance criteria are met. Close the Issue after the PR is merged.
+6. Use a normal merge commit or squash merge and retain the PR-to-Issue relationship. Do not rewrite shared, pushed branch history.
 
-## 3. 必须保留的 GitHub 痕迹
+## 4. Required GitHub evidence
 
-在整个开发过程持续保留以下可核查记录：
+Maintain these records throughout development:
 
-| 记录 | 最低要求 | 应体现的内容 |
+| Record | Minimum requirement | Evidence to retain |
 | --- | --- | --- |
-| 私有仓库 | 从开发开始到评分完成保持私有 | 正确仓库名、两位成员协作、后续按教师要求邀请评分者 |
-| Commit 历史 | 两位成员均有真实、可追溯的提交 | 提交前缀、中文说明、作者、时间和模块边界 |
-| 分支与合并 | 功能在分支完成后合并 | 分支名、PR、合并提交和冲突处理记录（如发生） |
-| GitHub Issues | 每个功能、缺陷、质量或 CI 工作均有 Issue | 描述、负责人、标签、验收条件、关闭状态和关联 PR |
-| Pull Requests 与 Review | 每个合并功能至少一个 PR | 改动说明、验证证据、同伴评审和合并记录 |
-| GitHub Actions | 每次推送和 PR 自动执行 Maven 验证 | 工作流 YAML、成功/失败运行历史及必要的修复提交 |
-| 质量报告 | 每个里程碑生成并提交可复核结果 | `reports/metrics`、`reports/spotbugs`、`reports/pmd` 中的报告及其生成提交 |
-| README | 最终提交前完整更新 | 两位成员姓名和学号、运行方式、目录说明、Docker 说明、私有仓库链接，以及双方代表性提交 SHA |
+| Private repository | Keep the repository private from the start until marking is complete | Correct repository name, both members as collaborators, and marker access when requested |
+| Commit history | Both members make genuine, traceable commits | Prefix, description, author, timestamp, and focused module scope |
+| Branches and merges | Complete features on branches before merging | Branch name, PR, merge commit, and conflict-resolution record when applicable |
+| GitHub Issues | Track every feature, defect, quality, and CI task | Description, owner, label, acceptance criteria, closed state, and linked PR |
+| Pull requests and reviews | Create a PR for every merged feature branch | Change summary, validation evidence, peer review, and merge record |
+| GitHub Actions | Run Maven validation on pushes and PRs | Workflow YAML, run history, and any necessary fix commit |
+| Quality reports | Generate reviewable reports at each milestone | Files in `reports/metrics`, `reports/spotbugs`, and `reports/pmd`, plus their generation commits |
+| README | Complete it before final submission | Both members' names and IDs, run instructions, directory explanation, Docker instructions, private repository link, and representative commit SHAs for both members |
 
-Issue、PR 和提交之间应形成闭环：`Issue -> 分支 -> Commit -> PR/Review -> CI -> Merge -> Close Issue`。只有真实发生的活动才应记录。
+The evidence must form a real lifecycle: `Issue -> branch -> commit -> PR/review -> CI -> merge -> close Issue`.
 
-## 4. Java 代码注释规则
+## 5. Java code-commenting rules
 
-1. 每个公共类、接口、枚举和公共方法写简短 Javadoc，说明它的职责、输入/输出或状态影响。服务接口尤其要写明异常或返回值的语义。
-2. 对不直观的业务决定写“为什么”的注释，例如 UTF-8 保存策略、ODT 读取降级策略、搜索偏移计算或关闭多个窗口的顺序；不要重复代码已经表达的“做什么”。
-3. 文件读写、PDF 导出、打印、YAML 解析和外部库调用必须说明失败时的处理方式。捕获异常时，注释或日志应解释恢复、提示或终止的原因；不得静默吞掉异常。
-4. 复杂的正则表达式、语法高亮规则、分页计算和跨窗口状态同步，应在临近代码处写简短解释，并将可复用规则提取为有名称的方法或常量。
-5. `TODO` 必须包含下一步动作和关联 Issue，例如 `// TODO(#18): ODT 解析失败时显示可恢复的错误提示。` 完成后删除 TODO 并关闭或更新 Issue。
-6. 不写失效、模糊或逐行翻译式注释；代码修改后同步更新相关 Javadoc、README 和配置说明。
+1. Add concise Javadoc to every public class, interface, enum, and public method. Describe responsibility, inputs and outputs, state changes, and meaningful exceptions.
+2. Comment on *why* a non-obvious decision exists, such as the UTF-8 save policy, ODT-read fallback, search-offset calculation, or multi-window close order. Do not restate what clear code already says.
+3. Explain failure handling for file I/O, PDF export, printing, YAML parsing, and external libraries. A caught exception must be recovered from, reported, or rethrown; never swallow it silently.
+4. Keep a short explanation beside complex regular expressions, syntax-highlighting rules, pagination calculations, and cross-window state synchronisation. Extract reusable logic into clearly named methods or constants.
+5. Every `TODO` includes the next action and its Issue, for example: `// TODO(#18): Show a recoverable error message when ODT parsing fails.` Remove it when complete and update or close the Issue.
+6. Do not leave stale, vague, or line-by-line translation comments. Update Javadoc, README files, and configuration documentation when behaviour changes.
 
-## 5. 提交前检查清单
+## 6. Pre-commit checklist
 
-- Issue 已创建或已关联，提交只包含本次任务所需文件。
-- 代码符合 Java 17、Maven 项目和 YAML 配置约定；不提交本地 jar、`target/` 或 IDE 文件。
-- 新增行为有相应 JUnit 测试；测试名描述场景和预期结果。
-- 已执行并记录相关 Maven 命令；涉及 UI、格式读取、PDF 或打印时有可复现的手工验证说明。
-- 注释与 Javadoc 说明了职责、边界和异常策略，且没有过期 TODO。
-- 已推送分支、创建 PR、关联 Issue，并等待或完成同伴评审。
+- The related Issue exists or is linked, and the change contains only files required for the task.
+- The code follows the Java 17, Maven, and YAML conventions. Do not commit local JAR files, `target/`, or IDE files.
+- New behaviour has focused JUnit coverage, with test names that describe scenario and expected outcome.
+- Relevant Maven commands have been run and recorded. UI, format-reading, PDF, and print work has reproducible manual verification notes.
+- Comments and Javadoc explain responsibilities, boundaries, and error handling; no obsolete TODO remains.
+- The branch is pushed, its PR links the Issue, and peer review is requested or complete.
