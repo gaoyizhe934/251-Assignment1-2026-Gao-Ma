@@ -1,0 +1,13 @@
+app:
+  title: Simple Text Editor
+window:
+  width: 1000
+  height: 700
+editor:
+  fontFamily: Monospaced
+  fontSize: 14
+  lineWrap: true
+  defaultEncoding: UTF-8
+team:
+  memberA: TODO
+  memberB: TODO

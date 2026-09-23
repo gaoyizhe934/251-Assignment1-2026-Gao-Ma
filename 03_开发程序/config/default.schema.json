@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/gaoyizhe934/251-Assignment1-2026-Gao-Ma/schemas/default.schema.json",
+  "title": "Java Text Editor Default Configuration",
+  "description": "Contract for config/default.yml. It limits runtime configuration to the assignment's planned application, window, editor, and team settings.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "app",
+    "window",
+    "editor",
+    "team"
+  ],
+  "properties": {
+    "app": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120,
+          "description": "Title shown by the Swing editor window."
+        }
+      }
+    },
+    "window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height"],
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 640,
+          "maximum": 3840,
+          "description": "Initial editor-window width in logical pixels."
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 480,
+          "maximum": 2160,
+          "description": "Initial editor-window height in logical pixels."
+        }
+      }
+    },
+    "editor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fontFamily", "fontSize", "lineWrap", "defaultEncoding"],
+      "properties": {
+        "fontFamily": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120,
+          "description": "Preferred font family for the text editing area."
+        },
+        "fontSize": {
+          "type": "integer",
+          "minimum": 8,
+          "maximum": 72,
+          "description": "Preferred editor font size in points."
+        },
+        "lineWrap": {
+          "type": "boolean",
+          "description": "Whether the main text area wraps long lines."
+        },
+        "defaultEncoding": {
+          "type": "string",
+          "enum": ["UTF-8", "US-ASCII"],
+          "description": "Default encoding for plain-text files; constrained to assignment-supported standard encodings."
+        }
+      }
+    },
+    "team": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["memberA", "memberB"],
+      "properties": {
+        "memberA": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120,
+          "description": "First team member; displayed by the About dialog."
+        },
+        "memberB": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120,
+          "description": "Second team member; displayed by the About dialog."
+        }
+      }
+    }
+  }
+}
